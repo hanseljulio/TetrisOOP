@@ -48,7 +48,7 @@ int menu() {
 	int value;
 	cout << "TETRIS" << endl;
 	cout << "[1] Play" << endl;
-	cout << "[2] Settings" << endl;
+	cout << "[2] High Scores" << endl;
 	cout << "[3] Exit" << endl;
 	cout << endl;
 	cout << "Select an option: ";
