@@ -30,6 +30,9 @@ void fileWriter(vector<int>& scoreList, int result) {
 			scoreList.insert(scoreList.begin() + i, result);
 			break;
 		}
+		else if (scoreList[i] == result) {
+			break;
+		}
 	}
 
 	// Clear the text file and replace it with the new scoreList values
