@@ -3,7 +3,6 @@
 # include <Windows.h>
 # include <thread>
 # include <vector>
-# include "Settings.h"
 # include <stdlib.h>
 # include "TetrisGame.h"
 # include <fstream>
@@ -61,46 +60,9 @@ int menu() {
 	return value;
 }
 
-void playerSettings(Settings screenSize, int &newScreenWidth, int &newScreenHeight) {
-	system("CLS");
-	int choice = 1;
-
-	while (choice < 2) {
-		cout << "SETTINGS" << endl;
-
-		if (newScreenWidth == 0 && newScreenHeight == 0) {
-			cout << "Current resolution: " << 120 << "x" << 30 << endl;
-		}
-		else {
-			cout << "Current resolution: " << newScreenWidth << "x" << newScreenHeight << endl;
-		}
-
-		
-		cout << "[1] Adjust screen resolution" << endl;
-		cout << "[2] Exit" << endl;
-
-		cout << "Select an option: ";
-		cin >> choice;
-
-		if (choice == 1) {
-			system("CLS");
-			cout << "Setting other than 120x30 may break the resolution.\n" 
-				"Please readjust the screen accordingly.\n" << endl;
-			cout << "New screen width: ";
-			cin >> newScreenWidth;
-			cout << "New screen height: ";
-			cin >> newScreenHeight;
-
-			system("CLS");
-		}
-	}
-	
-}
-
 
 int main() {
 	int option = 1;
-	Settings screenSize;
 	fileReader();
 	int newScore = 0;
 
@@ -113,14 +75,6 @@ int main() {
 		option = menu();
 
 		if (option == 1) {
-			if (newScreenWidth == 0 && newScreenHeight == 0) {
-				screenSize.setScreenWidth(120);
-				screenSize.setScreenHeight(30);
-			}
-			else {
-				screenSize.setScreenWidth(newScreenWidth);
-				screenSize.setScreenHeight(newScreenHeight);
-			}
 			int difficulty = 5;
 			system("CLS");
 
@@ -145,14 +99,12 @@ int main() {
 				system("pause");
 			}
 			
-			TetrisGame game(screenSize.getScreenWidth(), screenSize.getScreenHeight(), difficulty);
+			TetrisGame game(120, 30, difficulty);
 			newScore = game.play();
 			fileWriter(scoreList, newScore);
 		
 		}
 		else if (option == 2) {
-			//playerSettings(screenSize, newScreenWidth, newScreenHeight);
-			
 			cout << endl;
 			cout << "HIGH SCORES" << endl;
 			for (size_t i = 0; i < scoreList.size(); i++) {

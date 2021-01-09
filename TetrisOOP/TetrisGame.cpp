@@ -148,11 +148,8 @@ int TetrisGame::play() {
 			this_thread::sleep_for(45ms); // Game tick
 		}
 
-
-		 
 		speedCounter++;
 		forceDown = (speedCounter == speed);
-
 
 		// Game input
 		for (int key = 0; key < 4; key++) {
@@ -190,7 +187,7 @@ int TetrisGame::play() {
 		}
 
 		if (forceDown) {
-			// Update difficulty every 5 pieces
+			// Update difficulty every 5 pieces (Only for hard and nightmare mode)
 			if (difficulty > 1) {
 				speedCount = 0;
 				pieceCount++;
@@ -200,7 +197,6 @@ int TetrisGame::play() {
 					}
 				}
 			}
-
 
 			if (doesPieceFit(currentPiece, currentRotation, currentX, currentY + 1)) { // Does it fit?
 				currentY++; // Keep going
@@ -249,8 +245,6 @@ int TetrisGame::play() {
 				currentPiece = rand() % 7;
 				
 
-
-
 				// If it does not fit, it's game over
 				gameOver = !doesPieceFit(currentPiece, currentRotation, currentX, currentY);
 			}
@@ -291,18 +285,12 @@ int TetrisGame::play() {
 				}
 
 			}
-
-			//mciSendString("play mp3", NULL, 0, NULL);
 			
 			vLines.clear();
-			//PlaySound(TEXT("music\\LineClear.wav"), NULL, SND_SYNC);
-			//PlaySound(TEXT("music\\TetrisMusic.wav"), NULL, SND_ASYNC | SND_LOOP);
 		}
 
-		// Display score
+		// Display score - to move to the right modify 2 * screenWidth
 		swprintf_s(&screen[2 * screenWidth + fieldWidth + 6], 16, L"SCORE: %8d", score);
-
-		//swprintf_s(&screen[6 * screenWidth + fieldWidth + 6], 16, L"NEXT: %8d", currentPiece);
 
 		// Display Frame
 		WriteConsoleOutputCharacter(hConsole, screen, screenWidth * screenHeight, { 0,0 }, &dwBytesWritten);
@@ -315,7 +303,5 @@ int TetrisGame::play() {
 	cout << endl;
 	system("pause"); // Press any key to continue - built in C++ function
 
-	
-	
 	return score;
 }
