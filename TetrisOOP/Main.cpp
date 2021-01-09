@@ -66,10 +66,6 @@ int main() {
 	fileReader();
 	int newScore = 0;
 
-	int newScreenWidth = 0;
-	int newScreenHeight = 0;
-
-
 	while (option < 3) {
 		system("CLS");
 		option = menu();
@@ -112,10 +108,7 @@ int main() {
 			}
 			cout << endl;
 			system("pause");
-
 		}
-		
-		
 	}
 	
 	return 0;
