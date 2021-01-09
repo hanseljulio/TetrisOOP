@@ -36,7 +36,7 @@ void fileWriter(vector<int>& scoreList, int result) {
 	}
 
 	// Clear the text file and replace it with the new scoreList values
-	ofstream file("scores.txt", std::ofstream::out | std::ofstream::trunc);
+	ofstream file("scores.txt", ofstream::out | ofstream::trunc);
 	
 	for (size_t i = 0; i < scoreList.size(); i++) {
 		file << scoreList[i] << endl;
