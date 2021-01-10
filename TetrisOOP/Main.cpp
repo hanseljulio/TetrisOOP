@@ -51,7 +51,8 @@ int menu() {
 	cout << "TETRIS" << endl;
 	cout << "[1] Play" << endl;
 	cout << "[2] High Scores" << endl;
-	cout << "[3] Exit" << endl;
+	cout << "[3] Secret" << endl;
+	cout << "[4] Exit" << endl;
 	cout << endl;
 	cout << "Select an option: ";
 
@@ -65,8 +66,9 @@ int main() {
 	int option = 1;
 	fileReader();
 	int newScore = 0;
+	bool secret = false;
 
-	while (option < 3) {
+	while (option < 4) {
 		system("CLS");
 		option = menu();
 
@@ -95,7 +97,7 @@ int main() {
 				system("pause");
 			}
 			
-			TetrisGame game(120, 30, difficulty);
+			TetrisGame game(120, 30, difficulty, secret);
 			newScore = game.play();
 			fileWriter(scoreList, newScore);
 		
@@ -105,6 +107,25 @@ int main() {
 			cout << "HIGH SCORES" << endl;
 			for (size_t i = 0; i < scoreList.size(); i++) {
 				cout << i + 1 << ".  " << scoreList[i] << endl;
+			}
+			cout << endl;
+			system("pause");
+		}
+		else if (option == 3) {
+			string code;
+			cout << endl;
+			cout << "Enter secret code: ";
+			cin >> code;
+			if (code == "fullslav") {
+				secret = true;
+				cout << "Hello, comrade." << endl;
+			}
+			else if (code == "normal") {
+				secret = false;
+				cout << "Goodbye, comrade." << endl;
+			}
+			else {
+				cout << "Invalid code. Try again." << endl;
 			}
 			cout << endl;
 			system("pause");

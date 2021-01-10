@@ -13,7 +13,7 @@ using namespace std;
 class TetrisGame {
 public:
 	wstring tetrisShapes[7];
-	TetrisGame(int screenWidth, int screenHeight, int difficulty);
+	TetrisGame(int screenWidth, int screenHeight, int difficulty, bool secret);
 	~TetrisGame();
 
 	int fieldWidth = 11;
@@ -21,6 +21,7 @@ public:
 	int screenWidth = 0;
 	int screenHeight = 0;
 	int difficulty = 0;
+	bool secret = false;
 
 	unsigned char* playingField = nullptr;
 

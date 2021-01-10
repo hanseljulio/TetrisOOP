@@ -1,3 +1,17 @@
+/*
+This code is based on the work of Javidx9's (http://www.onelonecoder.com/) Tetris game which is licensed GPLv3. 
+Code is licensed under the terms of the GPLv3 license.
+
+Original code: https://github.com/OneLoneCoder/videos/blob/master/OneLoneCoder_Tetris.cpp
+Original video - "Code-It-Yourself! Tetris - Programming from Scratch (Quick and Simple C++)": https://www.youtube.com/watch?v=8OK8_tHeCIA&t=1806s
+
+Music used: 
+- Tetris Main Theme (https://www.youtube.com/watch?v=NmCCQxVBfyM&t=2s)
+- Korobeiniki - Red Army Choir (https://www.youtube.com/watch?v=5aT9ztK-m7U)
+
+
+*/
+
 # include <iostream>
 # include <string>
 # include <Windows.h>
@@ -9,11 +23,11 @@
 
 using namespace std;
 
-TetrisGame::TetrisGame(int screenWidth, int screenHeight, int difficulty) {
+TetrisGame::TetrisGame(int screenWidth, int screenHeight, int difficulty, bool secret) {
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
 	this->difficulty = difficulty;
-	
+	this->secret = secret;
 }
 
 TetrisGame::~TetrisGame() {
@@ -60,7 +74,13 @@ bool TetrisGame::doesPieceFit(int tetromino, int rotation, int posX, int posY) {
 int TetrisGame::play() {
 	system("CLS");
 
-	PlaySound(TEXT("music\\TetrisMusic.wav"), NULL, SND_ASYNC | SND_LOOP);
+	if (secret == true) {
+		PlaySound(TEXT("music\\TetrisMusic2.wav"), NULL, SND_ASYNC | SND_LOOP);
+	}
+	else {
+		PlaySound(TEXT("music\\TetrisMusic.wav"), NULL, SND_ASYNC | SND_LOOP);
+	}
+	
 
 	tetrisShapes[0].append(L"..X.");
 	tetrisShapes[0].append(L"..X.");
